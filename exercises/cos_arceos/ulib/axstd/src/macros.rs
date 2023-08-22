@@ -21,3 +21,12 @@ macro_rules! println {
         $crate::io::__print_impl(format_args!("{}\n", format_args!($($arg)*)));
     }
 }
+
+/// Prints to the standard output, with a newline.
+#[macro_export]
+macro_rules! println_prefix {
+    () => { $crate::print!("\n") };
+    ($prefix:expr,$fmt:expr,$($arg:tt)*) => {
+        println!(concat!($prefix, $fmt), $($arg)*);
+    }
+}
