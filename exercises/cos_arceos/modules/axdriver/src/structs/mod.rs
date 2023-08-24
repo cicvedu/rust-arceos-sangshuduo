@@ -40,11 +40,11 @@ impl BaseDriverOps for AxDeviceEnum {
     fn device_name(&self) -> &str {
         match self {
             #[cfg(feature = "net")]
-            Self::Net(dev) => dev.device_name(),
+            Self::Net(dev) => dev.inner.device_name(),
             #[cfg(feature = "block")]
             Self::Block(dev) => dev.device_name(),
             #[cfg(feature = "display")]
-            Self::Display(dev) => dev.device_name(),
+            Self::Display(dev) => dev.inner.device_name(),
             _ => unreachable!(),
         }
     }
